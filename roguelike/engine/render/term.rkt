@@ -27,10 +27,16 @@
     (charterm-cursor (+ 1 (Pos-x pos)) (+ 1 (Pos-y pos)))
     (charterm-display "@")))
 
+(define (draw-state! state)
+  (charterm-cursor 1 32)
+  (charterm-display state))
+
 (define (draw! state)
   (charterm-cursor 1 1)
   (draw-level! (hash-ref state 'level))
-  (draw-character! (hash-ref state 'player)))
+  (for ([actor (hash-map (hash-ref state 'actors) (lambda (k v) v))])
+    (draw-character! actor))
+  (draw-state! state))
 
 (define (read-key)
   (let ([key (charterm-read-key)])

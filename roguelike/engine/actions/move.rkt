@@ -17,5 +17,5 @@
     ['w  (Pos (+ (Pos-x pos) -1) (+ (Pos-y pos)  0))]
     ['nw (Pos (+ (Pos-x pos) -1) (+ (Pos-y pos) -1))]))
 
-(define (move character direction)
-  (hash-set character 'pos (move-pos (hash-ref character 'pos) direction)))
+(define (move actor direction)
+  (hash-set actor 'pos (move-pos (hash-ref actor 'pos) direction)))

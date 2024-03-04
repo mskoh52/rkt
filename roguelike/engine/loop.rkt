@@ -2,13 +2,18 @@
 
 (provide make-loop)
 
-(require "input.rkt")
+(require
+ "input.rkt"
+ "actions/dispatch.rkt")
+
+(define (should-read-key? state)
+  #t)
 
 (define (make-loop draw! read-key)
   (define (loop state)
     (draw! state)
-    (let ([key (read-key)])
-      (if (eq? key 'ctrl-q)
-          (exit)
-          (loop (update-state state key)))))
+    (loop
+     (if (should-read-key? state)
+         ((dispatch-action (handle-input (read-key))) state)
+         state)))
   loop)

@@ -8,13 +8,13 @@
  "engine/pos.rkt"
  "engine/render/term.rkt")
 
-
 (define (init-state level)
   (hash
-   'player (hash
-            'pos (Terrain-pos
-                  (findf (lambda (t) (eq? (TerrainDef-name (Terrain-def t)) 'stair-up))
-                         (flatten (Level-terrain level)))))
+   'actors (hash
+            'pc (hash 'pos (Terrain-pos
+                            (findf (lambda (t) (eq? (TerrainDef-name (Terrain-def t)) 'stair-up))
+                                   (flatten (Level-terrain level)))))
+            )
    'level level))
 
 (define level (load-level "level.txt" (load-terrain-definitions "terrain.toml")))
