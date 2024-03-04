@@ -1,0 +1,24 @@
+[wall]
+glyph = "█"
+enter-cost = inf
+exit-cost = inf
+
+[ground]
+glyph = " "
+enter-cost = 0
+exit-cost = 0
+
+[water]
+glyph = "░"
+enter-cost = 100
+exit-cost = 100
+
+[stair-up]
+glyph = "<"
+enter-cost = 0
+exit-cost = 0
+
+[stair-down]
+glyph = ">"
+enter-cost = 0
+exit-cost = 0
