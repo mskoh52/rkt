@@ -1,6 +1,7 @@
 #lang racket/base
 
 (require
+ racket/pretty
  math/array
  "charterm.rkt"
  "../level.rkt"
@@ -29,7 +30,7 @@
 
 (define (draw-state! state)
   (charterm-cursor 1 32)
-  (charterm-display state))
+  (charterm-display (pretty-format state)))
 
 (define (draw! state)
   (charterm-cursor 1 1)

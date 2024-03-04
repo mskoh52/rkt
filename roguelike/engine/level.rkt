@@ -62,6 +62,3 @@
 
 (define (terrain-by-glyph glyph terrain-definitions)
   (findf (lambda (x) (eq? (TerrainDef-glyph x) glyph)) terrain-definitions))
-
-;; (define terrain-definitions (load-terrain-definitions "../terrain.toml"))
-;; (findf (lambda (x) (eq? (TerrainDef-glyph x) #\#)) terrain-definitions)
