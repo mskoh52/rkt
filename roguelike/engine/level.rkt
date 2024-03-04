@@ -42,7 +42,7 @@
               (Terrain
                (cons x y)
                (terrain-by-glyph glyph terrain-definitions)))
-            (range (length (string->list line)))
+            (range (string-length line))
             (string->list line))))))
 
 (define (load-terrain-definitions filepath)
