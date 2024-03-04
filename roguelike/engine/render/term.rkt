@@ -4,15 +4,14 @@
  racket/pretty
  math/array
  "charterm.rkt"
- "../level.rkt"
  "../loop.rkt")
 
 (provide main)
 
 (define (level-to-str level)
   (map (lambda (row)
-         (list->string (map (lambda (t) (TerrainDef-glyph (Terrain-def t))) row)))
-       (Level-terrain level)))
+         (list->string (map (lambda (t) (hash-ref (hash-ref t 'def) 'glyph)) row)))
+       (hash-ref level 'terrain)))
 
 (define (draw-level! level)
   (draw-lines! (level-to-str level)))
@@ -22,10 +21,10 @@
     (charterm-display line)
     (charterm-newline)))
 
-(define (draw-character! character)
-  (let ([pos (hash-ref character 'pos)])
+(define (draw-actor! actor)
+  (let ([pos (hash-ref actor 'pos)])
     (charterm-cursor (+ 1 (car pos)) (+ 1 (cdr pos)))
-    (charterm-display "@")))
+    (charterm-display (hash-ref actor 'glyph))))
 
 (define (draw-state! state)
   (charterm-cursor 1 32)
@@ -35,8 +34,9 @@
   (charterm-cursor 1 1)
   (draw-level! (hash-ref state 'level))
   (for ([actor (hash-map (hash-ref state 'actors) (lambda (k v) v))])
-    (draw-character! actor))
-  (draw-state! state))
+    (draw-actor! actor))
+  (charterm-cursor 1 30)
+)
 
 (define (read-key)
   (let ([key (charterm-read-key)])

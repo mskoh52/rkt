@@ -1,8 +1,7 @@
 #lang racket/base
 
 (provide
- dispatch-action
- )
+ dispatch-action)
 
 (require
  racket/control
@@ -13,8 +12,5 @@
 (define (dispatch-action action)
   (match action
     ['exit (lambda (state) (abort))]
-    [(cons 'move (cons actor-key direction))
-     (lambda (state)
-       (let ([actor (nested-hash-ref state 'actors actor-key)])
-         (nested-hash-set state 'actors actor-key (move actor direction))))]
+    [(cons 'move (cons actor-key direction)) (lambda (state) (move state action))]
     [_ (lambda (state) state)]))

@@ -15,5 +15,6 @@
     (loop
      (if (should-read-key? state)
          ((dispatch-action (handle-input (read-key))) state)
+         ;; TODO  handle npc actions instead of returning state unchanged
          state)))
   loop)
