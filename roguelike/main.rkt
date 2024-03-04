@@ -5,7 +5,6 @@
  racket/match
  "engine/input.rkt"
  "engine/level.rkt"
- "engine/pos.rkt"
  "engine/render/term.rkt")
 
 (define (init-state level)

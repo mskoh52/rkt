@@ -5,8 +5,7 @@
  math/array
  "charterm.rkt"
  "../level.rkt"
- "../loop.rkt"
- "../pos.rkt")
+ "../loop.rkt")
 
 (provide main)
 
@@ -25,7 +24,7 @@
 
 (define (draw-character! character)
   (let ([pos (hash-ref character 'pos)])
-    (charterm-cursor (+ 1 (Pos-x pos)) (+ 1 (Pos-y pos)))
+    (charterm-cursor (+ 1 (car pos)) (+ 1 (cdr pos)))
     (charterm-display "@")))
 
 (define (draw-state! state)

@@ -4,8 +4,7 @@
  racket/file
  racket/list
  math/array
- toml
- "pos.rkt")
+ toml)
 
 (provide
  (struct-out Level)
@@ -41,7 +40,7 @@
        (set! y (+ y 1))
        (map (lambda (x glyph)
               (Terrain
-               (Pos x y)
+               (cons x y)
                (terrain-by-glyph glyph terrain-definitions)))
             (range (length (string->list line)))
             (string->list line))))))

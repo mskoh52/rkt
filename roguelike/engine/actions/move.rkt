@@ -3,19 +3,18 @@
 (provide move)
 
 (require
- racket/match
- "../pos.rkt")
+ racket/match)
 
 (define (move-pos pos direction)
   (match direction
-    ['n  (Pos (+ (Pos-x pos)  0) (+ (Pos-y pos) -1))]
-    ['ne (Pos (+ (Pos-x pos)  1) (+ (Pos-y pos) -1))]
-    ['e  (Pos (+ (Pos-x pos)  1) (+ (Pos-y pos)  0))]
-    ['se (Pos (+ (Pos-x pos)  1) (+ (Pos-y pos)  1))]
-    ['s  (Pos (+ (Pos-x pos)  0) (+ (Pos-y pos)  1))]
-    ['sw (Pos (+ (Pos-x pos) -1) (+ (Pos-y pos)  1))]
-    ['w  (Pos (+ (Pos-x pos) -1) (+ (Pos-y pos)  0))]
-    ['nw (Pos (+ (Pos-x pos) -1) (+ (Pos-y pos) -1))]))
+    ['n  (cons (+ (car pos)  0) (+ (cdr pos) -1))]
+    ['ne (cons (+ (car pos)  1) (+ (cdr pos) -1))]
+    ['e  (cons (+ (car pos)  1) (+ (cdr pos)  0))]
+    ['se (cons (+ (car pos)  1) (+ (cdr pos)  1))]
+    ['s  (cons (+ (car pos)  0) (+ (cdr pos)  1))]
+    ['sw (cons (+ (car pos) -1) (+ (cdr pos)  1))]
+    ['w  (cons (+ (car pos) -1) (+ (cdr pos)  0))]
+    ['nw (cons (+ (car pos) -1) (+ (cdr pos) -1))]))
 
 (define (move actor direction)
   (hash-set actor 'pos (move-pos (hash-ref actor 'pos) direction)))
