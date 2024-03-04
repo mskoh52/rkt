@@ -3,11 +3,11 @@
 (require
  math/array
  "charterm.rkt"
- "../structs.rkt"
- "../level.rkt")
+ "../level.rkt"
+ "../loop.rkt"
+ "../pos.rkt")
 
-(provide
- draw!)
+(provide main)
 
 (define (level-to-str level)
   (map (lambda (row)
@@ -30,5 +30,16 @@
 (define (draw! state)
   (charterm-cursor 1 1)
   (draw-level! (hash-ref state 'level))
-  (draw-character! (hash-ref state 'player))
-  (charterm-cursor 1 1))
+  (draw-character! (hash-ref state 'player)))
+
+(define (read-key)
+  (let ([key (charterm-read-key)])
+    (charterm-cursor 1 30)
+    (charterm-clear-line-right)
+    (charterm-display (if (char? key) (string key) (symbol->string key)))
+    key))
+
+(define (main state)
+  (with-charterm
+   (charterm-clear-screen)
+   ((make-loop draw! read-key) state)))

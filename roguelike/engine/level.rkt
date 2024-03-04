@@ -5,7 +5,7 @@
  racket/list
  math/array
  toml
- "structs.rkt")
+ "pos.rkt")
 
 (provide
  (struct-out Level)
