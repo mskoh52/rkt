@@ -2,17 +2,16 @@
 
 (provide make-loop)
 
-(require "input.rkt"
-         "actions/dispatch.rkt")
+(require "actions/dispatch.rkt")
 
-(define (should-read-key? state)
+(define (should-get-action? state)
   #t)
 
-(define (make-loop draw! read-key)
+(define (make-loop draw! get-action)
   (define (loop state)
     (draw! state)
-    (loop (if (should-read-key? state)
-              ((dispatch-action (handle-input (read-key))) state)
+    (loop (if (should-get-action? state)
+              ((dispatch-action (get-action)) state)
               ;; TODO  handle npc actions instead of returning state unchanged
               state)))
   loop)
