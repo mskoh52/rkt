@@ -1,13 +1,11 @@
 #lang racket/base
 
-(provide
- dispatch-action)
+(provide dispatch-action)
 
-(require
- racket/control
- racket/match
- nested-hash
- "move.rkt")
+(require racket/control
+         racket/match
+         nested-hash
+         "move.rkt")
 
 (define (dispatch-action action)
   (match action

@@ -2,8 +2,7 @@
 
 (provide handle-input)
 
-(require
- racket/match)
+(require racket/match)
 
 (define (handle-input key)
   ;;; returns an action as defined in actions/dispatch.rkt
