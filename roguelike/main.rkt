@@ -2,7 +2,7 @@
 
 (require "engine/level.rkt"
          "engine/state.rkt"
-         "engine/render/term.rkt")
+         "engine/frontend/charterm/term.rkt")
 
 (define level (load-level "level.txt" (load-terrain-definitions "terrain.toml")))
 (define state (init-state level))
